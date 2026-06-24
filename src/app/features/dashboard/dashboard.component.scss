@@ -1,0 +1,46 @@
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.kpi-card {
+  padding: 22px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.kpi-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+}
+
+.kpi-icon.blue {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.kpi-icon.green {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.kpi-icon.orange {
+  background: #ffedd5;
+  color: #c2410c;
+}
+
+.kpi-card span {
+  color: #64748b;
+  display: block;
+}
+
+.kpi-card strong {
+  font-size: 28px;
+}

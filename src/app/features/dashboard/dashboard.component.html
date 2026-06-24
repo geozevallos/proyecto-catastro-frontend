@@ -1,0 +1,80 @@
+<h2 class="page-title">Dashboard Catastral</h2>
+<p class="page-subtitle">Resumen general de propietarios, lotes y superficie registrada.</p>
+
+<div *ngIf="loading" class="alert alert-info">Cargando información...</div>
+
+<div *ngIf="!loading" class="dashboard-grid">
+  <article class="kpi-card card-soft">
+    <div class="kpi-icon blue"><i class="bi bi-people"></i></div>
+    <div>
+      <span>Propietarios</span>
+      <strong>{{ propietarios.length }}</strong>
+    </div>
+  </article>
+
+  <article class="kpi-card card-soft">
+    <div class="kpi-icon green"><i class="bi bi-grid-3x3-gap"></i></div>
+    <div>
+      <span>Lotes</span>
+      <strong>{{ lotes.length }}</strong>
+    </div>
+  </article>
+
+  <article class="kpi-card card-soft">
+    <div class="kpi-icon orange"><i class="bi bi-rulers"></i></div>
+    <div>
+      <span>Superficie total</span>
+      <strong>{{ superficieTotal | number:'1.2-2' }} m²</strong>
+    </div>
+  </article>
+</div>
+
+<div class="row g-4 mt-1">
+  <div class="col-lg-6">
+    <div class="card-soft p-4">
+      <h5 class="mb-3">Últimos propietarios</h5>
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead>
+            <tr>
+              <th>Documento</th>
+              <th>Nombre</th>
+              <th>Tipo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let propietario of propietarios.slice(0, 5)">
+              <td>{{ propietario.documento }}</td>
+              <td>{{ propietario.nombre }} {{ propietario.apellido }}</td>
+              <td>{{ propietario.tipo }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="card-soft p-4">
+      <h5 class="mb-3">Últimos lotes</h5>
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead>
+            <tr>
+              <th>Referencia</th>
+              <th>Propietario</th>
+              <th>Área</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let lote of lotes.slice(0, 5)">
+              <td>{{ lote.referenciaCatastral }}</td>
+              <td>{{ lote.propietarioNombre }}</td>
+              <td>{{ lote.superficie }} m²</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

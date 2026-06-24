@@ -1,0 +1,99 @@
+.layout {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 270px 1fr;
+}
+
+.sidebar {
+  background: linear-gradient(180deg, #123c69, #0b2545);
+  color: white;
+  padding: 24px;
+}
+
+.brand {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 34px;
+}
+
+.brand-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.14);
+  font-size: 24px;
+}
+
+.brand h1 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.brand span {
+  color: #cbd5e1;
+  font-size: 13px;
+}
+
+.menu {
+  display: grid;
+  gap: 10px;
+}
+
+.menu a {
+  color: #e2e8f0;
+  text-decoration: none;
+  padding: 13px 14px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.menu a:hover,
+.menu a.active {
+  background: rgba(255, 255, 255, 0.14);
+  color: white;
+}
+
+.main {
+  min-width: 0;
+}
+
+.topbar {
+  height: 78px;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 0 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topbar p {
+  margin: 4px 0 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.user-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-box div {
+  display: grid;
+  text-align: right;
+}
+
+.user-box span {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.content {
+  padding: 28px;
+}

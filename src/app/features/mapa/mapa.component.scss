@@ -1,0 +1,34 @@
+.map-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 20px;
+}
+
+.lote-panel {
+  height: calc(100vh - 190px);
+  overflow: auto;
+}
+
+.lote-item {
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 10px;
+  display: grid;
+  gap: 2px;
+}
+
+.lote-item span,
+.lote-item small {
+  color: #64748b;
+}
+
+.map-card {
+  padding: 10px;
+}
+
+#map {
+  width: 100%;
+  height: calc(100vh - 210px);
+  border-radius: 14px;
+}

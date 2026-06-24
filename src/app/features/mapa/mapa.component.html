@@ -1,0 +1,19 @@
+<h2 class="page-title">Mapa Catastral GIS</h2>
+<p class="page-subtitle">Visualización geográfica de los lotes registrados.</p>
+
+<div class="map-layout">
+  <aside class="card-soft p-3 lote-panel">
+    <h5>Lotes cargados</h5>
+    <p class="text-muted">Visualización de los lotes registrados</p>
+
+    <div class="lote-item" *ngFor="let lote of lotes">
+      <strong>{{ lote.referenciaCatastral }}</strong>
+      <span>{{ lote.propietarioNombre }}</span>
+      <small>{{ lote.superficie }} m²</small>
+    </div>
+  </aside>
+
+  <section class="card-soft map-card">
+    <div id="map"></div>
+  </section>
+</div>

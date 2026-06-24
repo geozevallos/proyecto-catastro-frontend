@@ -1,0 +1,66 @@
+:root {
+  --catastro-primary: #123c69;
+  --catastro-secondary: #0b7285;
+  --catastro-bg: #f4f7fb;
+  --catastro-card: #ffffff;
+  --catastro-border: #d9e2ec;
+  --catastro-text: #1f2937;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--catastro-bg);
+  color: var(--catastro-text);
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.page-subtitle {
+  color: #64748b;
+  margin-bottom: 22px;
+}
+
+.card-soft {
+  background: var(--catastro-card);
+  border: 1px solid var(--catastro-border);
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+}
+
+.btn-catastro {
+  background: var(--catastro-primary);
+  border: 0;
+  color: white;
+  border-radius: 12px;
+  padding: 10px 16px;
+}
+
+.btn-catastro:hover {
+  background: #0f3155;
+  color: white;
+}
+
+.badge-activo {
+  background: #dcfce7;
+  color: #166534;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.badge-inactivo {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+}

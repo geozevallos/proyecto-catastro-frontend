@@ -1,0 +1,56 @@
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-icon">
+        <i class="bi bi-map"></i>
+      </div>
+      <div>
+        <h1>Catastro</h1>
+        <span>Microservicios</span>
+      </div>
+    </div>
+
+    <nav class="menu">
+      <a routerLink="/dashboard" routerLinkActive="active">
+        <i class="bi bi-speedometer2"></i>
+        Dashboard
+      </a>
+      <a routerLink="/propietarios" routerLinkActive="active">
+        <i class="bi bi-people"></i>
+        Propietarios
+      </a>
+      <a routerLink="/lotes" routerLinkActive="active">
+        <i class="bi bi-grid-3x3-gap"></i>
+        Lotes
+      </a>
+      <a routerLink="/mapa" routerLinkActive="active">
+        <i class="bi bi-geo-alt"></i>
+        Mapa GIS
+      </a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <strong>Sistema Catastral Digital</strong>
+        <p>Gestión de propietarios, lotes y consultas geográficas</p>
+      </div>
+
+      <div class="user-box">
+        <div>
+          <strong>{{ user?.username }}</strong>
+          <span>{{ user?.role }}</span>
+        </div>
+        <button class="btn btn-sm btn-outline-danger" (click)="logout()">
+          <i class="bi bi-box-arrow-right"></i>
+          Salir
+        </button>
+      </div>
+    </header>
+
+    <section class="content">
+      <router-outlet />
+    </section>
+  </main>
+</div>
