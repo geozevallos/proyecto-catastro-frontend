@@ -4,15 +4,16 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../core/services/auth.service';
+import { RegisterRequest } from '../../core/models/auth.model';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
-export class LoginComponent {
+export class RegisterComponent {
   private readonly formBuilder = inject(FormBuilder);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
@@ -21,10 +22,12 @@ export class LoginComponent {
 
   form = this.formBuilder.group({
     username: ['', [Validators.required]],
-    password: ['', [Validators.required]]
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    fullName: ['', [Validators.required]]
   });
 
-  login(): void {
+  register(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
@@ -32,22 +35,23 @@ export class LoginComponent {
 
     this.loading = true;
 
-    const request = {
+    const request: RegisterRequest = {
       username: this.form.value.username ?? '',
-      password: this.form.value.password ?? ''
+      email: this.form.value.email ?? '',
+      password: this.form.value.password ?? '',
+      fullName: this.form.value.fullName ?? ''
     };
 
-    this.authService.login(request).subscribe({
+    this.authService.register(request).subscribe({
       next: () => {
-
-        console.log('true');
-
         this.loading = false;
-        this.router.navigate(['/dashboard']);
+        Swal.fire('Registro exitoso', 'La cuenta se ha creado correctamente.', 'success').then(() => {
+          this.router.navigate(['/login']);
+        });
       },
       error: () => {
         this.loading = false;
-        Swal.fire('Acceso denegado', 'Usuario o contraseña incorrectos.', 'error');
+        Swal.fire('Error', 'No fue posible registrar el usuario. Verifica los datos e intenta nuevamente.', 'error');
       }
     });
   }

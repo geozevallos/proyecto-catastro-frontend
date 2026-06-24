@@ -1,0 +1,94 @@
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  background: #f8fafc;
+}
+
+.login-hero {
+  background: linear-gradient(135deg, #123c69, #0b7285);
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 70px;
+}
+
+.hero-content {
+  max-width: 620px;
+}
+
+.hero-icon {
+  width: 76px;
+  height: 76px;
+  border-radius: 24px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.16);
+  font-size: 38px;
+  margin-bottom: 24px;
+}
+
+.hero-content h1 {
+  font-size: 44px;
+  font-weight: 800;
+  margin-bottom: 18px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  color: #e0f2fe;
+  line-height: 1.7;
+}
+
+.login-panel {
+  display: grid;
+  place-items: center;
+  padding: 40px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  padding: 34px;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+}
+
+.login-card h2 {
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.login-card p {
+  color: #64748b;
+  margin-bottom: 24px;
+}
+
+.login-card label {
+  font-weight: 700;
+  margin: 12px 0 6px;
+}
+
+.login-card small {
+  color: #dc2626;
+  margin-top: 4px;
+  display: block;
+}
+
+.form-control {
+  min-height: 46px;
+  border-radius: 12px;
+}
+
+.form-footer {
+  margin-top: 18px;
+  color: #475569;
+}
+
+.form-footer a {
+  color: #0b7285;
+  text-decoration: none;
+  font-weight: 700;
+}

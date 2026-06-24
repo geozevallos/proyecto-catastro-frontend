@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { AuthResponse, LoginRequest } from '../models/auth.model';
+import { AuthResponse, LoginRequest, RegisterRequest } from '../models/auth.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +14,13 @@ export class AuthService {
   constructor(private readonly http: HttpClient) {}
 
   login(request: LoginRequest): Observable<AuthResponse> {
-
-    console.log(this.apiUrl);
-
     return this.http.post<AuthResponse>(`${this.apiUrl}/login`, request).pipe(
       tap((response) => this.saveSession(response))
     );
+  }
+
+  register(request: RegisterRequest): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/register`, request);
   }
 
   saveSession(response: AuthResponse): void {

@@ -1,0 +1,74 @@
+<div class="login-page">
+  <section class="login-hero">
+    <div class="hero-content">
+      <div class="hero-icon">
+        <i class="bi bi-pencil-square"></i>
+      </div>
+      <h1>Registro de usuario</h1>
+      <p>
+        Crea tu cuenta para acceder al sistema catastral digital.
+      </p>
+    </div>
+  </section>
+
+  <section class="login-panel">
+    <form class="login-card" [formGroup]="form" (ngSubmit)="register()">
+      <h2>Crear cuenta</h2>
+      <p>Completa los datos para registrar un nuevo usuario.</p>
+
+      <label>Usuario</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="admin"
+        formControlName="username"
+      />
+      <small *ngIf="form.controls.username.touched && form.controls.username.invalid">
+        El usuario es obligatorio.
+      </small>
+
+      <label>Correo electrónico</label>
+      <input
+        type="email"
+        class="form-control"
+        placeholder="admin@gmail.com"
+        formControlName="email"
+      />
+      <small *ngIf="form.controls.email.touched && form.controls.email.invalid">
+        Ingresa un email válido.
+      </small>
+
+      <label>Contraseña</label>
+      <input
+        type="password"
+        class="form-control"
+        placeholder="abc123"
+        formControlName="password"
+      />
+      <small *ngIf="form.controls.password.touched && form.controls.password.invalid">
+        La contraseña debe tener al menos 6 caracteres.
+      </small>
+
+      <label>Nombre completo</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Jorge Zevallos"
+        formControlName="fullName"
+      />
+      <small *ngIf="form.controls.fullName.touched && form.controls.fullName.invalid">
+        El nombre completo es obligatorio.
+      </small>
+
+      <button class="btn btn-catastro w-100 mt-3" [disabled]="loading">
+        <span *ngIf="!loading">Registrar</span>
+        <span *ngIf="loading">Registrando...</span>
+      </button>
+
+      <p class="form-footer">
+        ¿Ya tienes cuenta?
+        <a routerLink="/login">Inicia sesión aquí</a>
+      </p>
+    </form>
+  </section>
+</div>
