@@ -1,5 +1,5 @@
 export interface Propietario {
-  id: number;
+  id?: number;
   nombre: string;
   apellido: string;
   documento: string;
@@ -7,7 +7,7 @@ export interface Propietario {
   telefono: string;
   direccion: string;
   tipo: string;
-  activo: boolean;
-  createdAt: string;
-  updatedAt: string;
+  activo?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
 }

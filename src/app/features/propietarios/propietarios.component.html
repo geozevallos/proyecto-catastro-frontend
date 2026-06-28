@@ -1,12 +1,60 @@
 <div class="d-flex justify-content-between align-items-start mb-3">
   <div>
     <h2 class="page-title">Gestión de Propietarios</h2>
-    <p class="page-subtitle">Consulta de personas naturales y jurídicas registradas.</p>
+    <p class="page-subtitle">Consulta y administración de personas naturales y jurídicas registradas.</p>
   </div>
-  <button class="btn btn-catastro">
+  <button class="btn btn-catastro" type="button" (click)="abrirCrear()">
     <i class="bi bi-plus-circle"></i>
     Nuevo propietario
   </button>
+</div>
+
+<div class="card-soft p-4 mb-4" *ngIf="showForm">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">{{ isEditing ? 'Editar propietario' : 'Crear propietario' }}</h5>
+    <button class="btn btn-outline-secondary btn-sm" type="button" (click)="cancelar()">
+      Cancelar
+    </button>
+  </div>
+
+  <form [formGroup]="propietarioForm" (ngSubmit)="guardar()" class="row g-3">
+    <div class="col-md-6">
+      <label class="form-label">Nombre</label>
+      <input class="form-control" formControlName="nombre" />
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Apellido</label>
+      <input class="form-control" formControlName="apellido" />
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Documento</label>
+      <input class="form-control" formControlName="documento" />
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Email</label>
+      <input class="form-control" type="email" formControlName="email" />
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Teléfono</label>
+      <input class="form-control" formControlName="telefono" />
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Dirección</label>
+      <input class="form-control" formControlName="direccion" />
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Tipo</label>
+      <select class="form-select" formControlName="tipo">
+        <option value="PERSONA_NATURAL">Persona natural</option>
+        <option value="PERSONA_JURIDICA">Persona jurídica</option>
+      </select>
+    </div>
+
+    <div class="col-12 d-flex justify-content-end">
+      <button class="btn btn-outline-secondary me-2" type="button" (click)="cancelar()">Cancelar</button>
+      <button class="btn btn-catastro" type="submit">{{ isEditing ? 'Actualizar' : 'Crear' }}</button>
+    </div>
+  </form>
 </div>
 
 <div class="card-soft p-4">
@@ -44,10 +92,10 @@
             </span>
           </td>
           <td class="text-end">
-            <button class="btn btn-sm btn-outline-primary me-2">
+            <button class="btn btn-sm btn-outline-primary me-2" type="button" (click)="abrirEditar(propietario)">
               <i class="bi bi-pencil"></i>
             </button>
-            <button class="btn btn-sm btn-outline-danger">
+            <button class="btn btn-sm btn-outline-danger" type="button" (click)="eliminar(propietario)">
               <i class="bi bi-trash"></i>
             </button>
           </td>

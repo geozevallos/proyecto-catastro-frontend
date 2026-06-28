@@ -14,4 +14,16 @@ export class PropietarioService {
   listar(): Observable<Propietario[]> {
     return this.http.get<Propietario[]>(this.apiUrl);
   }
+
+  crear(payload: Partial<Propietario>): Observable<Propietario> {
+    return this.http.post<Propietario>(this.apiUrl, payload);
+  }
+
+  actualizar(id: number, payload: Partial<Propietario>): Observable<Propietario> {
+    return this.http.put<Propietario>(`${this.apiUrl}/${id}`, payload);
+  }
+
+  eliminar(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
 }
