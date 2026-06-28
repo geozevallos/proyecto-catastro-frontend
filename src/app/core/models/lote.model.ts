@@ -1,14 +1,14 @@
 export interface Lote {
-  id: number;
+  id?: number;
   referenciaCatastral: string;
   direccion: string;
   superficie: number;
   tipo: string;
   propietarioId: number;
-  propietarioNombre: string;
-  propietarioDocumento: string;
-  geometria: GeoJSON.Geometry | null; 
+  propietarioNombre?: string;
+  propietarioDocumento?: string;
+  geometria: GeoJSON.GeoJsonObject | string | null;
   estado: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
 }

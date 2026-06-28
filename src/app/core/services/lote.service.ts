@@ -14,4 +14,16 @@ export class LoteService {
   listar(): Observable<Lote[]> {
     return this.http.get<Lote[]>(this.apiUrl);
   }
+
+  crear(payload: Partial<Lote>): Observable<Lote> {
+    return this.http.post<Lote>(this.apiUrl, payload);
+  }
+
+  actualizar(id: number, payload: Partial<Lote>): Observable<Lote> {
+    return this.http.put<Lote>(`${this.apiUrl}/${id}`, payload);
+  }
+
+  eliminar(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
 }

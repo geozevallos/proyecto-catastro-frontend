@@ -47,18 +47,20 @@ private dibujarLotes(lotes: Lote[]): void {
     const group = L.featureGroup();
 
     lotes.forEach((lote) => {
-        if (!lote.geometria) {
+        const geometria = this.parsearGeometria(lote.geometria);
+
+        if (!geometria) {
             return;
         }
 
-        const layer = L.geoJSON(lote.geometria, {
+        const layer = L.geoJSON(geometria, {
             style: {
                 color: '#3388ff',
                 weight: 2,
                 opacity: 0.7,
                 fillOpacity: 0.3
             },
-            onEachFeature: (feature, layer) => {
+            onEachFeature: (_feature, layer) => {
                 layer.bindPopup(`
                     <strong>${lote.referenciaCatastral}</strong><br>
                     Propietario: ${lote.propietarioNombre || 'Desconocido'}<br>
@@ -78,6 +80,22 @@ private dibujarLotes(lotes: Lote[]): void {
             padding: [30, 30]
         });
     }
+}
+
+private parsearGeometria(geometria: Lote['geometria']): GeoJSON.GeoJsonObject | null {
+    if (!geometria) {
+        return null;
+    }
+
+    if (typeof geometria === 'string') {
+        try {
+            return JSON.parse(geometria) as GeoJSON.GeoJsonObject;
+        } catch {
+            return null;
+        }
+    }
+
+    return geometria;
 }
 
 
