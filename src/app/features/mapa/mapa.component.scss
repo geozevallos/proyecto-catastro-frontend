@@ -7,15 +7,52 @@
 .lote-panel {
   height: calc(100vh - 190px);
   overflow: auto;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+}
+
+.lote-panel h5 {
+  margin-bottom: 6px;
+  color: #0f172a;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.lote-panel .text-muted {
+  margin-bottom: 14px;
+  color: #64748b;
 }
 
 .lote-item {
-  border: 1px solid #e2e8f0;
+  width: 100%;
+  border: 1px solid #dbeafe;
   border-radius: 14px;
-  padding: 12px;
+  padding: 12px 14px;
   margin-bottom: 10px;
   display: grid;
-  gap: 2px;
+  gap: 3px;
+  text-align: left;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+  transition: all 0.2s ease;
+}
+
+.lote-item:hover {
+  transform: translateY(-1px);
+  border-color: #60a5fa;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.12);
+}
+
+.lote-item.active {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border-color: #2563eb;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.16);
+}
+
+.lote-item strong {
+  color: #0f172a;
+  text-decoration: none;
 }
 
 .lote-item span,

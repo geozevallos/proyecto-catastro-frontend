@@ -2,16 +2,26 @@
 <p class="page-subtitle">Visualización geográfica de los lotes registrados.</p>
 
 <div class="map-layout">
-  <aside class="card-soft p-3 lote-panel">
+<aside class="lote-panel card-soft p-3">
+  <div class="lote-header">
     <h5>Lotes cargados</h5>
     <p class="text-muted">Visualización de los lotes registrados</p>
+  </div>
 
-    <div class="lote-item" *ngFor="let lote of lotes">
-      <strong>{{ lote.referenciaCatastral }}</strong>
-      <span>{{ lote.propietarioNombre }}</span>
-      <small>{{ lote.superficie }} m²</small>
-    </div>
-  </aside>
+  <div class="lote-list">
+    <button
+      type="button"
+      class="lote-item"
+      [class.active]="loteSeleccionadoId === lote.id"
+      *ngFor="let lote of lotes"
+      (click)="centrarEnLote(lote)"
+    >
+      <div class="lote-ref">{{ lote.referenciaCatastral }}</div>
+      <div class="lote-owner">{{ lote.propietarioNombre }}</div>
+      <div class="lote-meta">{{ lote.superficie }} m²</div>
+    </button>
+  </div>
+</aside>
 
   <section class="card-soft map-card">
     <div id="map"></div>

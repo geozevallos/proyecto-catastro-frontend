@@ -13,7 +13,9 @@ import { Lote } from '../../core/models/lote.model';
 })
 export class MapaComponent implements AfterViewInit, OnDestroy {
   private map?: L.Map;
+  private layers: { lote: Lote; layer: L.Layer; highlighted?: L.Layer }[] = [];
   lotes: Lote[] = [];
+  loteSeleccionadoId: number | null = null;
 
   constructor(private readonly loteService: LoteService) {}
 
@@ -44,6 +46,7 @@ export class MapaComponent implements AfterViewInit, OnDestroy {
   }
 
 private dibujarLotes(lotes: Lote[]): void {
+    this.layers = [];
     const group = L.featureGroup();
 
     lotes.forEach((lote) => {
@@ -71,6 +74,7 @@ private dibujarLotes(lotes: Lote[]): void {
         });
 
         layer.addTo(group);
+        this.layers.push({ lote, layer });
     });
 
     group.addTo(this.map!);
@@ -79,6 +83,41 @@ private dibujarLotes(lotes: Lote[]): void {
         this.map!.fitBounds(group.getBounds(), {
             padding: [30, 30]
         });
+    }
+}
+
+centrarEnLote(lote: Lote): void {
+    const entry = this.layers.find((item) => item.lote.id === lote.id);
+
+    if (!entry?.layer || !this.map) {
+        return;
+    }
+
+    this.loteSeleccionadoId = lote.id ?? null;
+
+    this.layers.forEach((item) => {
+      if (item.layer instanceof L.GeoJSON) {
+        item.layer.setStyle({
+          color: '#3388ff',
+          weight: 2,
+          opacity: 0.7,
+          fillOpacity: 0.3
+        });
+      }
+    });
+
+    const layer = entry.layer as L.GeoJSON;
+    layer.setStyle({
+      color: '#dc2626',
+      weight: 3,
+      opacity: 1,
+      fillOpacity: 0.45
+    });
+
+    const bounds = layer.getBounds();
+
+    if (bounds.isValid()) {
+        this.map.fitBounds(bounds, { padding: [30, 30], maxZoom: 18 });
     }
 }
 
