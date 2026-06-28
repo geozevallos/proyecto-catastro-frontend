@@ -192,6 +192,55 @@ export class LotesComponent implements OnInit, AfterViewChecked, OnDestroy {
     });
   }
 
+  descargarReporte(lote: Lote): void {
+    if (!lote.id) {
+      Swal.fire('Error', 'No se puede generar el reporte sin identificar el lote.', 'error');
+      return;
+    }
+
+    Swal.fire({
+      title: 'Generando reporte',
+      text: 'Se está solicitando el archivo PDF del lote.',
+      allowOutsideClick: false,
+      didOpen: () => Swal.showLoading()
+    });
+
+    console.log('GAAAAAAAAAAAAAAAAAAAAAAA');
+
+    this.loteService.solicitarReporte(lote.id).subscribe({
+      next: (response) => {
+        console.log('asdadsadsad');
+        const ruta = response.ruta || response.path || response.filePath || response.archivo;
+
+        if (!ruta) {
+          Swal.fire('Error', 'La respuesta del servicio no incluyó la ruta del archivo.', 'error');
+          return;
+        }
+
+        console.log(ruta)
+
+        this.loteService.descargarReporte(ruta).subscribe({
+          next: (blob) => {
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `reporte_lote_${lote.id}.pdf`;
+            link.click();
+            window.URL.revokeObjectURL(url);
+            Swal.fire('Reporte listo', 'El archivo se descargó correctamente.', 'success');
+          },
+          error: () => {
+            Swal.fire('Error', 'No se pudo descargar el reporte.', 'error');
+          }
+        });
+      },
+      error: (err) => {
+        console.error('Error al solicitar el reporte:', err);
+        Swal.fire('Error', 'No se pudo solicitar el reporte.', 'error');
+      }
+    });
+  }
+
   onGeojsonSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];

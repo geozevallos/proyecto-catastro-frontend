@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-between align-items-start mb-3">
   <div>
     <h2 class="page-title">Gestión de Lotes</h2>
-    <p class="page-subtitle">Consulta y administración de lotes con geometría asociada.</p>
+    <p class="page-subtitle">Consulta y administración de lotes.</p>
   </div>
   <button class="btn btn-catastro" type="button" (click)="abrirCrear()">
     <i class="bi bi-plus-circle"></i>
@@ -104,6 +104,9 @@
             <span class="badge-activo">{{ lote.estado }}</span>
           </td>
           <td class="text-end">
+            <button class="btn btn-sm btn-outline-success me-2" type="button" (click)="descargarReporte(lote)" title="Descargar reporte">
+              <i class="bi bi-file-earmark-pdf"></i>
+            </button>
             <button class="btn btn-sm btn-outline-primary me-2" type="button" (click)="abrirEditar(lote)">
               <i class="bi bi-pencil"></i>
             </button>
